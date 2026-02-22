@@ -1,0 +1,83 @@
+Here is the **exam-oriented solution** for **Question 7 (Write Short Notes)**. Since the question asks for **"Any Two"**, I have provided solutions for all four common options so you can choose the best ones.
+
+**Target Length:** Write about 10-12 lines (or a table) per note to hit the **5 Marks** sweet spot.
+
+---
+
+### **📝 Exam Solution: 7. Write Short Notes (Any Two) [2 x 5 = 10]**
+
+#### **a) Sensor Interfacing**
+**Definition:** Sensor interfacing is the process of connecting a sensor to a microcontroller to read physical quantities (like temperature, light, motion) and convert them into digital data for processing.
+
+**Key Steps involved:**
+1.  **Signal Conditioning:** Raw signals from sensors are often weak or noisy. Operational Amplifiers (Op-Amps) are used to amplify and filter the signal.
+2.  **ADC Conversion:** For analog sensors (e.g., LM35), the Analog-to-Digital Converter (ADC) inside the microcontroller converts the voltage (0-5V) into a binary number.
+3.  **Data Acquisition:** The microcontroller reads this digital value using communication protocols.
+    *   **Analog:** Via ADC pin.
+    *   **Digital:** Via GPIO, I2C, SPI, or UART.
+
+**Block Diagram:**
+`[ Physical Parameter ] -> [ Sensor ] -> [ Signal Conditioning ] -> [ Microcontroller (ADC/GPIO) ]`
+
+---
+
+#### **b) Multitasking Vs Multithreading**
+Both concepts allow a system to perform multiple operations, but they function at different levels.
+
+| Feature | **Multitasking** | **Multithreading** |
+| :--- | :--- | :--- |
+| **Definition** | Execution of multiple **processes** (programs) simultaneously by the OS. | Execution of multiple **threads** (sub-tasks) within a single process. |
+| **Memory** | Each process has its **own separate** memory space. | All threads **share the same** memory space of the parent process. |
+| **Switching** | Context switching is **slow** (heavy overhead). | Context switching is **fast** (lightweight). |
+| **Isolation** | If one process crashes, others are unaffected. | If one thread crashes, the entire process may crash. |
+| **Example** | Running a Browser and a Music Player at the same time. | Opening multiple tabs within the same Web Browser. |
+
+---
+
+#### **c) Context Switching**
+**Definition:** Context Switching is the process in an Operating System (or RTOS) where the CPU saves the state (context) of the currently running task and loads the state of the next task to be executed.
+
+**How it works:**
+1.  **Save State:** The CPU saves the contents of registers, Program Counter (PC), and stack pointer of the *current task* into the Task Control Block (TCB).
+2.  **Scheduler Decision:** The OS scheduler decides which task to run next based on priority.
+3.  **Load State:** The CPU loads the registers and PC from the *new task's* TCB.
+4.  **Resume:** The new task resumes execution exactly where it left off.
+
+**Impact:** While necessary for multitasking, frequent context switching introduces **overhead**, consuming CPU time that could be used for actual processing.
+
+---
+
+#### **d) Raspberry Pi Vs ESP32 for IoT**
+**Raspberry Pi** is a full Single Board Computer (SBC), while **ESP32** is a Microcontroller.
+
+| Feature | **Raspberry Pi (e.g., Pi 4)** | **ESP32** |
+| :--- | :--- | :--- |
+| **Type** | Microprocessor (Mini Computer) | Microcontroller |
+| **OS** | Runs Full OS (Linux/Raspbian) | Runs Firmware (FreeRTOS, Arduino) |
+| **Power** | High power (Needs 5V, 3A). Cannot run on small batteries. | Low power. Can run on batteries for months (Deep Sleep). |
+| **Speed/RAM** | Very Fast (GHz), GBs of RAM. | Slower (MHz), KBs of RAM. |
+| **Usage** | Image processing, AI, Servers, Gateway. | Simple Sensors, Smart Home switches, Wearables. |
+| **Cost** | Expensive ($35 - $80+) | Very Cheap ($4 - $6) |
+
+---
+
+### **💡 Neplish Explainer (Core Concept Bujhne Tarika)**
+
+**1. Sensor Interfacing:**
+*   **Concept:** Sensor ra Microcontroller ko milan karaune kaam.
+*   **Analogy:** Sensor le "Analog" bhasa bolxa (Voltage), Microcontroller le "Digital" bhasa bujhxa (0/1). Bich ma **ADC** (Translator) rakhera kura bujhaune kaam nai Interfacing ho.
+
+**2. Multitasking vs Multithreading:**
+*   **Multitasking:** Euta haat le bhat khane, arko haat le mobile chalaune. Duita farak kaam (Process) ekai choti. (Example: Laptop ma Word ra Chrome kholnu).
+*   **Multithreading:** Eutai haat le bhat mukha ma halne, ani tei haat le daal halne. Kaam "Khane" nai ho (Process), tara bhitra steps farak xa (Threads). (Example: Chrome vitra 10 wota tabs kholnu).
+
+**3. Context Switching:**
+*   **Concept:** Shift Change.
+*   **Analogy:** Euta worker (Task A) le kaam xodera jada, usle aafno files (Registers) locker ma rakhxa. Arko worker (Task B) aayera aafno files locker bata nikalera kaam suru garxa. Yo "Files rakhne ra nikalne" time lai Context Switching vaninxha. Yo jati dherai vayo, kaam teti dhilo hunxa (Overhead).
+
+**4. Raspberry Pi vs ESP32:**
+*   **Raspberry Pi:** Yo **Laptop** jastai ho. Monitor, Keyboard jodna milxa. Thulo kaam (Camera, Server) garna use hunxa. Mahango hunxa.
+*   **ESP32:** Yo **Remot** jastai ho. Sano chip, thorai power khane. Sensor padhne ra Wi-Fi bata data pathaune kaam garxa. Sasto hunxa.
+
+**Exam Tip:**
+Exam ma **Comparison Table** banaune bittikai marks bag-bagti aauxa. Paragraph lekhera time waste nagarnu, Table is King! 👑
