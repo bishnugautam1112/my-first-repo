@@ -6,7 +6,7 @@ Here is the **"Slay" Material for 2024 Q2b**. This is a guaranteed 8-mark numeri
 ---
 
 ### **2024 Q2 b) What is A* search? Apply A* search to determine the optimal path from Node S to Node G.**
-![alt text](image.png)
+![alt text](image-1.png)
 #### 📝 High-Yield Exam Note (Write this to get full marks)
 
 **1. What is A* Search?**
