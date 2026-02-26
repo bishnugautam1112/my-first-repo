@@ -22,6 +22,7 @@ The Min-Conflicts algorithm is a heuristic-based **Local Search** method used to
     *   Let's place one Queen in each column randomly.
     *   *Positions:* `(Col 1, Row 2)`, `(Col 2, Row 4)`, `(Col 3, Row 1)`, `(Col 4, Row 3)`
     *   *(Imagine/Draw a 4x4 grid with Qs at these spots).*
+    ![alt text](image.png)
     *   **Calculate Conflicts:**
         *   Q1 is hit by Q3 (Diagonal). **1 Conflict.**
         *   Q2 is hit by Q4 (Diagonal). **1 Conflict.**
@@ -35,12 +36,14 @@ The Min-Conflicts algorithm is a heuristic-based **Local Search** method used to
         *   Move to Row 1: Hit by Q3 (Row 1). **1 Conflict.**
         *   Move to Row 2: Hit by Q1 (Row 2). **1 Conflict.**
         *   Move to Row 3: Hit by Q4 (Row 3). **1 Conflict.**
-        *   *Wait, this random start was actually tricky. Let's assume a simpler case where moving Q2 to Row 1 clears the diagonal path.*
+        *   *Wait, this random start was actually tricky. Let's assume a simpler case where moving Q2 to Row 1 
+        ![alt text](image-1.png)clears the diagonal path.*
 
 *   **Step 3: The Repair (The "Min" Move)**
     *   The algorithm simply moves the chosen Queen to the square with the **lowest conflict count (0 is best)**.
     *   If moving Q2 to Row 1 makes conflicts = 0, we move it there.
     *   Now the board state is updated. We check if there are any remaining conflicts. If yes, pick another Queen and repeat.
+    ![alt text](image-2.png)
 
 *(Exam Tip: Just draw two 4x4 grids. Label the first "Initial State with Conflicts" and the second "Final Solved State" where Queens are at positions: [2, 4, 1, 3] or similar non-attacking spots).*
 
