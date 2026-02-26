@@ -3,7 +3,7 @@ Here is the **"Slay" Material for 2025 Q4b**. This is a **Numerical** question. 
 ---
 
 ### **2025 Q4 b) Which method – classification or clustering do you prefer? Use the method you chose to check whether the tissue paper with X1=7 and X2=3 is good or bad.**
-
+![alt text](image-3.png)
 #### 📝 High-Yield Exam Note (Solution)
 
 **1. Method Selection:**
