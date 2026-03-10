@@ -771,7 +771,7 @@ Numerical problem aayo bhane yehi operation use hune ho. OR bhanyo bhane dubai m
 **Definition:** A system that models human knowledge and reasoning using **IF-THEN** rules composed of linguistic variables rather than exact numerical conditions.
 
 *   **Structure:** `IF (Antecedent) THEN (Consequent)`
-*   **Linguistic Variables:** Words or sentences used in place of numbers (e.g., "Slow", "Medium", "Fast").
+*   **Linguistic Variables:** Words or sentences used in place of numbers (e.g., "Slow", "Medium", "Fast").![alt text](image-5.png)
 *   **Example Rule Base for an AC Controller:**
     *   Rule 1: IF Temperature is *Hot* AND Humidity is *High* THEN AC Speed is *Maximum*.
     *   Rule 2: IF Temperature is *Cold* THEN AC Speed is *Low*.
