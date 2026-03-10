@@ -642,7 +642,7 @@ Understanding the difference between these two is a guaranteed exam topic.
     *   **Set Membership:** An element has a "degree of membership" representing how much it belongs to the set.
     *   *Example:* Is the temperature hot? -> It is 0.7 (70%) Hot and 0.3 (30%) Warm. 
 
-(put a fig here: Two graphs side-by-side. Left (Classical): A square wave showing a sudden jump from 0 to 1 at a specific threshold. Right (Fuzzy): A slanted, smooth line (or S-curve) showing a gradual transition from 0 to 1.)
+(put a fig here: Two graphs side-by-side. Left (Classical): A square wave showing a sudden jump from 0 to 1 at a specific threshold. Right (Fuzzy): A slanted, smooth line (or S-curve) showing a gradual transition from 0 to 1.)![alt text](image.png)
 
 ### 6.2. Fuzzy Sets and Membership Functions
 *   **Fuzzy Sets:** A fuzzy set is a set without a crisp, clearly defined boundary. It can contain elements with only a partial degree of membership. Mathematical representation: $A = \{(x, \mu_A(x)) | x \in X\}$, where $X$ is the universe of discourse.
@@ -656,6 +656,7 @@ Understanding the difference between these two is a guaranteed exam topic.
     3.  **Gaussian (Bell-shaped):** Smooth curves, widely used for natural phenomena.
 
 (put a fig here: Three coordinate graphs showing the shapes of membership functions: A Triangle, a Trapezoid, and a smooth Gaussian/Bell curve. The Y-axis for all should be labeled from 0 to 1.)
+![cc](image-1.png)
 
 ### 6.3. Fuzzy Operations
 Just like boolean logic has AND, OR, and NOT, fuzzy sets have operations but they operate on continuous values [0,1]. Let $\mu_A(x)$ and $\mu_B(x)$ be membership values.
