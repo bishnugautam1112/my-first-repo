@@ -875,7 +875,7 @@ To make an expert system work, human knowledge must be translated into a format 
 *   **Advantage:** Visually intuitive and naturally supports "inheritance" (e.g., if a Sparrow is a Bird, it automatically inherits the property of having wings).
 
 (put a fig here: A simple Semantic Network diagram. Node 'Sparrow' -> (IS-A) -> Node 'Bird' -> (IS-A) -> Node 'Animal'. Node 'Bird' -> (HAS) -> Node 'Wings'.)
-
+![alt text](image-6.png)
 ### 7.3.4. Ontology-Based Systems
 *   **Concept:** A highly structured, standardized framework for representing knowledge. An ontology formally defines the shared vocabulary, classes, properties, and complex relationships within a specific domain.
 *   **Usage:** Widely used in modern web technologies (Semantic Web), medical databases, and enterprise systems to ensure different AI systems can share and understand the same data seamlessly.
@@ -924,7 +924,7 @@ There are two primary strategies for reasoning in an expert system: Forward Chai
 *   **Use Case:** Best suited for diagnostic systems, debugging, and troubleshooting where the number of possible outcomes is small and you want to confirm a specific one efficiently (e.g., Medical diagnosis like MYCIN).
 
 (put a fig here: A side-by-side comparison diagram. On the left (Forward Chaining): Arrows point from 'Initial Facts/Data' through 'Rules' towards a 'Goal/Conclusion'. On the right (Backward Chaining): Arrows point backward from a 'Goal/Hypothesis' through 'Rules' to find required 'Facts/Evidence'.)
-
+![alt text](image-7.png)
 ***
 **Nepali Core Concept Summary:**
 Exam ko lagi VVI difference! 
