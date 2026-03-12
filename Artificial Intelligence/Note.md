@@ -204,7 +204,7 @@ To maximize AI's benefits while mitigating its severe risks, strict governance a
     *   *Actuators:* Displaying on the screen, writing files, sending packets.
 
 (put a fig here: A basic block diagram showing an 'Agent' and an 'Environment'. An arrow points from Environment to Agent labeled 'Percepts (Sensors)', and an arrow points from Agent back to Environment labeled 'Actions (Actuators)'.)
-
+![alt text](image-10.png)
 ***
 
 **Nepali Core Concept Summary (Neplish):**
@@ -280,7 +280,7 @@ Examiners frequently ask to categorize an environment based on these 7 dimension
     *   *Unknown:* The agent does not know the rules and must learn how the environment works through trial and error (e.g., Exploring a newly discovered planet).
 
 (put a fig here: A table layout. On the left column list the properties (e.g., Observable, Agents, Deterministic). In the middle column put 'Chess with clock' categorizing it as Fully observable, Multi-agent, Deterministic, Sequential, Semi-dynamic, Discrete, Known. In the right column put 'Taxi driving' categorizing it as Partially observable, Multi-agent, Stochastic, Sequential, Dynamic, Continuous, Known.)
-
+![alt text](image-9.png)
 ***
 
 **Nepali Core Concept Summary (Neplish):**
@@ -323,7 +323,7 @@ Russell and Norvig classify agent programs into four basic types, increasing in 
     *   *Example:* Even if a self-driving car temporarily loses sight of a pedestrian behind a truck, its internal model "remembers" the pedestrian's trajectory and slows down.
 
 (put a fig here: Block diagram of a Model-Based Reflex Agent. 'Sensors' point to 'State' box. The 'State' relies on 'How the world evolves' and 'What my actions do'. The 'State' then feeds into 'Condition-action rules' which determines the 'Action' sent to 'Actuators'.)
-
+![alt text](image-8.png)
 ***
 
 **Nepali Core Concept Summary (Neplish):**
@@ -385,6 +385,432 @@ A learning agent is divided into four conceptual components:
 
 *(Note: This completes Unit 2: Intelligent Agents. Ready for Unit 3: Problem Solving and Search Algorithms. Let me know to continue!)*
 
+
+
+
+# Unit 3: Problem Solving and Search Algorithms
+
+## 3.1. Problem Solving
+
+### 3.1.1. Problem Solving Agents
+**Definition:** Problem-solving agents are a specific type of goal-based agents. They decide what to do by finding sequences of actions that lead to desirable states (goals). Before they can search for a solution, they must formulate the goal and the problem.
+*   They adopt a **planning approach** rather than a reflex approach.
+*   They assume the environment is fully observable, discrete, known, and deterministic.
+
+### 3.1.2. Problem Solving Process
+An agent follows a strict 4-step process to solve a problem (VVI for exams):
+1.  **Goal Formulation:** The agent determines what it wants to achieve based on the current situation and performance measure. (e.g., "I am in Kathmandu, I want to reach Pokhara").
+2.  **Problem Formulation:** The agent defines what actions and states to consider to reach the goal. (e.g., "I will consider cities as states and driving between them as actions").
+3.  **Search:** The process of looking for a sequence of actions that reaches the goal. The output of the search algorithm is a **solution** (an action sequence).
+4.  **Execution:** Once a solution is found, the agent carries out the actions one by one.
+
+(put a fig here: A linear flowchart showing the 4 steps: Goal Formulation -> Problem Formulation -> Search -> Execution.)
+
+### 3.1.3. Production System
+**Definition:** A production system is a cognitive architecture proposed for AI problem solving. It provides a formal mechanism for representing knowledge and executing rules.
+**Components:**
+1.  **Global Database:** The central memory or working memory that contains the current state of the problem.
+2.  **Set of Production Rules:** A set of rules in the format `IF (condition) THEN (action)`. 
+3.  **Control System (Interpreter):** The logic that decides which rule to apply when multiple conditions are met (conflict resolution), and then executes it to update the global database.
+
+### 3.1.4. Well-defined and Ill-defined Problems
+*   **Well-defined Problems:** Have a clear initial state, clear rules/actions, and a precise goal test. The environment is predictable. (Example: Chess, Sudoku, 8-puzzle).
+*   **Ill-defined Problems:** Lack clear boundaries, rules, or definitive goal states. The environment is often ambiguous and requires human-like intuition. (Example: Designing a self-driving car, writing a poem, solving a moral dilemma).
+
+### 3.1.5. Problem Formulation
+To rigorously define a problem for a search algorithm, it must have **5 components** (Memorize this list!):
+1.  **Initial State:** The state where the agent starts (e.g., `In(Kathmandu)`).
+2.  **Actions:** The set of possible actions available to the agent at a given state (e.g., `Drive(Kathmandu, Pokhara)`).
+3.  **Transition Model:** A description of what each action does. It returns the resulting state (e.g., `Result(In(Kathmandu), Drive(Pokhara)) = In(Pokhara)`).
+4.  **Goal Test:** A condition to check if the current state is the goal state.
+5.  **Path Cost:** A function that assigns a numeric cost to each path. The agent aims to minimize this cost (e.g., distance in km, time taken).
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Problem Solving Process:** Agent le aafai kaam gardaina, paila Goal fix garcha (Kaha jane?), ani Problem formulate garcha (Kasari jane?), tespachi Search garcha (Bato khojne), ra last ma matra Execution (gadi chalaune) garcha.
+*   **Production System:** Yesma 3 wota kura huncha: Data rakhne thau (Global database), rules haru (IF-THEN), ra kun rule chalaune vanera decide garne dimaag (Control system).
+*   **Well vs Ill-defined:** Rules ra goal clear vako kura (Jastai Chess) Well-defined ho. Rules nai clear navako, j pani huna sakne kura (Jastai real-life driving) Ill-defined ho.
+*   **Problem Formulation (5 Steps):** Exam ma fix sodhcha. Kunai pani problem lai machine le bujhne banauna 5 kura chaincha: 1. Start kaha bata garne (Initial state), 2. K k garna milcha (Actions), 3. Action le k asar garcha (Transition model), 4. Goal pugyo ki nai kasari tha paune (Goal test), 5. Bato ko karcha/distance kati lagcha (Path cost).
+
+---
+
+## 3.2. Search Algorithms
+
+### 3.2.1. Uninformed Search
+**Definition:** Also known as "Blind Search". These algorithms have no additional information about states beyond that provided in the problem definition. They only know how to generate successors and distinguish a goal state from a non-goal state.
+
+#### 3.2.1.1. Breadth-First Search (BFS)
+*   **Concept:** Explores the search tree level by level. It expands the root node, then all its children, then all their children, and so on.
+*   **Data Structure:** Uses a **FIFO Queue** (First In, First Out).
+*   **Evaluation:**
+    *   *Complete:* Yes (if the branching factor is finite).
+    *   *Optimal:* Yes (but only if all step costs are equal).
+    *   *Time & Space Complexity:* $O(b^d)$ (Exponential). Memory is the biggest problem for BFS because it stores all generated nodes.
+
+#### 3.2.1.2. Depth-First Search (DFS)
+*   **Concept:** Explores the search tree by diving as deep as possible down one path before backtracking.
+*   **Data Structure:** Uses a **LIFO Stack** (Last In, First Out).
+*   **Evaluation:**
+    *   *Complete:* No (fails in infinite depth spaces or loops).
+    *   *Optimal:* No (it might find a long, terrible path to the goal first).
+    *   *Time Complexity:* $O(b^m)$.
+    *   *Space Complexity:* $O(bm)$ (Linear). This is DFS's massive advantage over BFS; it requires very little memory.
+
+#### 3.2.1.3. Iterative Deepening Search (IDS)
+*   **Concept:** Combines the best of both BFS and DFS. It repeatedly runs a depth-limited search, gradually increasing the depth limit (limit = 0, then 1, then 2, etc.) until the goal is found.
+*   **Evaluation:**
+    *   *Advantage:* It gets the **completeness and optimality of BFS** while maintaining the **low memory requirement of DFS** ($O(bd)$). It is the preferred uninformed search method when there is a large search space and the depth of the solution is not known.
+
+(put a fig here: A multi-panel diagram. Panel 1 (BFS): Arrows showing level-by-level traversal (1, 2, 3 horizontally). Panel 2 (DFS): Arrows showing deep traversal down the left-most branch to the bottom before moving right. Panel 3 (IDS): Showing limits increasing progressively (L=0, L=1, L=2).)
+
+### 3.2.2. Informed Search
+**Definition:** Also known as "Heuristic Search". These algorithms use problem-specific knowledge to find solutions more efficiently than blind search.
+
+#### 3.2.2.1. Heuristics ($h(n)$)
+*   **Concept:** A heuristic function, $h(n)$, estimates the cost of the cheapest path from node $n$ to the goal node. 
+*   **Rule:** If $n$ is the goal node, $h(n) = 0$. 
+*   *Example:* In a map routing problem, $h(n)$ could be the straight-line distance (bird-flight distance) from the current city to the destination city.
+
+#### 3.2.2.2. Greedy Best-First Search
+*   **Concept:** It tries to expand the node that is closest to the goal, purely relying on the heuristic.
+*   **Formula:** $f(n) = h(n)$
+*   **Evaluation:** 
+    *   *Speed:* Very fast.
+    *   *Complete:* No (can get stuck in loops).
+    *   *Optimal:* No (it might take a path that looks good locally but is actually longer overall).
+
+#### 3.2.2.3. A* Search (VVI for Exams)
+*   **Concept:** The most widely known form of best-first search. It evaluates nodes by combining the actual cost to reach the node ($g(n)$) and the estimated cost to get to the goal ($h(n)$).
+*   **Formula:** **$f(n) = g(n) + h(n)$**
+    *   $g(n)$ = path cost from the start node to node $n$ (Past cost).
+    *   $h(n)$ = estimated cost from node $n$ to the goal (Future cost).
+    *   $f(n)$ = estimated total cost of the path through $n$.
+*   **Evaluation:**
+    *   A* is both **Complete** and **Optimal**, provided that the heuristic function is *admissible* (it never overestimates the true cost to reach the goal).
+
+(put a fig here: A graph representing A* Search calculation. Show a Start node 'S', an intermediate node 'n', and a Goal node 'G'. Label the path from S to n as 'g(n)' and the dotted path from n to G as 'h(n)'. Label the entire path as 'f(n) = g(n) + h(n)'.)
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Uninformed Search (Blind Search):** Bato ko barema kei tha nahune, andha vayera khojne.
+    *   **BFS:** Line by line (level by level) khojne. Queue use garcha. Answer pakka vhetaucha (Complete) tara memory ekdum dherai khancha.
+    *   **DFS:** Euta bato pakdepachi tesko last samma pugne, v भेटिएन vane matra farkine. Stack use garcha. Memory kam khancha tara baango bato bata lamo answer nikalna sakcha (Not optimal).
+    *   **IDS:** BFS ra DFS duitai ko hero ho. DFS ko jasto kam memory khancha ra BFS ko jasto right answer nikalcha. Depth limit badhaudai search garcha.
+*   **Informed Search (Heuristic):** Bato ko barema idea (Heuristic) vayeko search.
+    *   **Heuristic $h(n)$:** Ahile ko thau bata goal samma pugna kati time lagla vanera guess garne value (jastai straight-line distance).
+    *   **Greedy:** Jo sabai vanda najik dekhincha tesmai ham falne ($f(n) = h(n)$). Fast huncha tara optimal (best) hudaina.
+    *   **A* (A-star):** Sabai vanda best algorithm! Yesle aaja samma kati kharcha vayo ($g(n)$) ra bhabisya ma kati lagla ($h(n)$) duitai lai jodera decision linxa. **$f(n) = g(n) + h(n)$**. Exam ma yo formula lekhnai parcha!
+
+    
+
+
+
+## 3.3. Local Search and Optimization Problems
+**Definition:** Unlike previous search algorithms (like A* or BFS) that explore paths to find a goal, local search algorithms operate using a single "current" state and generally move only to neighboring states. They are used for **Optimization Problems** where the *path* to the goal doesn't matter; only the *final state* matters (e.g., 8-Queens problem, Traveling Salesperson Problem).
+*   **Advantage:** They use very little memory (usually a constant amount) and can often find reasonable solutions in large or infinite (continuous) state spaces.
+
+### 3.3.1. Hill-Climbing Search and its problems
+*   **Concept:** Also known as "Greedy Local Search". It is a loop that continually moves in the direction of increasing value (or decreasing cost). It terminates when it reaches a "peak" where no neighbor has a higher value. It does not maintain a search tree.
+*   **The Problems (VVI for Exams):** Hill-climbing often gets stuck and fails to find the optimal global solution due to three main geographical landscape issues:
+    1.  **Local Maxima:** A peak that is higher than all of its neighboring states but lower than the global maximum. The algorithm halts here because every move looks like a downhill (worse) move.
+    2.  **Plateaus:** A flat area of the state-space landscape where neighboring states have the same value. The search conducts a random walk and can get lost.
+    3.  **Ridges:** A sequence of local maxima that is very difficult for greedy algorithms to navigate because the algorithm can only move in discrete grid directions, causing it to zigzag inefficiently.
+
+(put a fig here: A 2D landscape graph (State space landscape). Label the x-axis as 'State space' and y-axis as 'Objective function'. Draw a curve showing a 'Global Maximum' (the highest peak), a 'Local Maximum' (a smaller peak), a 'Plateau' (a flat horizontal line), and a 'Current State' point moving up.)
+
+### 3.3.2. Simulated Annealing
+*   **Concept:** Inspired by the physical process of metallurgy (annealing), where metals are heated to high temperatures to increase atomic movement, then gradually cooled to form a strong, flawless crystalline structure.
+*   **Mechanism to escape Local Maxima:** 
+    *   Instead of always picking the *best* move (like Hill-Climbing), it picks a *random* move.
+    *   If the random move improves the situation, it is accepted.
+    *   If it makes things worse, it is accepted with a certain *probability*.
+*   **The Temperature Parameter ($T$):** The probability of accepting a bad move depends on the "Temperature". At the start (high $T$), it allows many bad moves (exploration). As time passes, $T$ decreases (cooling down), and it only accepts good moves, eventually behaving like standard hill-climbing (exploitation).
+
+### 3.3.3. Genetic Algorithms (GA)
+*   **Concept:** A stochastic local search algorithm inspired by Charles Darwin's theory of natural evolution. It explores the search space by generating successive populations of states.
+*   **The 5 Phases of GA:**
+    1.  **Initial Population:** Starts with a set of randomly generated states (called *individuals* or *chromosomes*).
+    2.  **Fitness Function:** Evaluates how "good" or fit each individual is at solving the problem.
+    3.  **Selection:** Selects the fittest individuals from the population to be parents.
+    4.  **Crossover (Recombination):** Combines parts of two parents to create new offspring. This is where the major leap in state-space exploration happens.
+    5.  **Mutation:** Randomly alters small parts of the offspring's state to maintain genetic diversity and prevent premature convergence to a local maximum.
+
+(put a fig here: A block diagram of the Genetic Algorithm cycle. 'Initial Population' -> 'Fitness Evaluation' -> 'Selection' -> 'Crossover' -> 'Mutation' -> 'New Population'. The cycle repeats until a stopping criteria is met.)
+
+### 3.3.4. Gradient Descent
+*   **Concept:** A first-order iterative optimization algorithm for finding a local minimum of a differentiable function. It is heavily used in continuous state spaces and Machine Learning (to minimize the loss function of Neural Networks).
+*   **Mechanism:** It takes steps proportional to the negative of the gradient (or approximate gradient) of the function at the current point. If you imagine standing on a mountain in a thick fog, gradient descent involves feeling the slope under your feet and taking a step in the steepest downward direction.
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Local Search:** Bato (path) ko matlab chaina, khali final answer (state) ramro huna paryo. Yesle memory dherai mandaina kina vane purano node haru save garera rakhdaina.
+*   **Hill-Climbing:** "Sadhai mathi matra jane" (Greedy) tarika. Yesko 3 wota main problem cha (Exam ma fix lekhne): 
+    *   *Local Maxima* (Sano danda lai nai thulo pahaad samjhera rokkine).
+    *   *Plateaus* (Sammothau ma puge pachi kata jane tha napaune).
+    *   *Ridges* (Dharilo danda haru jaha zigzag garna parcha).
+*   **Simulated Annealing:** Falam lai tatauneka ra sekaune process jastai. Suru ma yesle jani-jani galti garcha (bad moves lincha) taaki local maxima bata baira niskinna sakos. Pachi chiso hudai gayepachi sahi move matra lincha.
+*   **Genetic Algorithms:** Manxe ko evolution (Darwin's theory) bata copy gareko. Yesma 'Population' bata best 'Parents' select garne, uniharu ko features milayera naya 'Offspring' banaune (Crossover), ra thorei random changes lyaucha (Mutation).
+*   **Gradient Descent:** Machine learning ma error/loss lai sabai vanda kam garna use hune math trick. Ukalo/Oralo ko slope herera oralo jharne tarika ho.
+
+---
+
+## 3.4. Adversarial Search and Game Playing
+**Definition:** In multi-agent environments where agents are competitive (like Chess or Tic-Tac-Toe), the goals of the agents conflict. These are called adversarial search problems, commonly known as games.
+
+### 3.4.1. Minimax algorithm
+*   **Concept:** Designed for deterministic, perfect-information, zero-sum games (if one wins, the other loses). There are two players: **MAX** and **MIN**.
+*   **Goal:** MAX wants to maximize the final score, while MIN wants to minimize it.
+*   **Mechanism:** 
+    *   The algorithm generates the entire game tree down to the terminal states (win/loss/draw).
+    *   It evaluates the terminal states using a Utility function.
+    *   It then works backward (bottom-up). At MIN's turn, it passes the minimum value up. At MAX's turn, it passes the maximum value up.
+    *   MAX assumes MIN will always play optimally to minimize MAX's score, so MAX chooses the move that yields the highest guaranteed payoff against perfect play.
+
+### 3.4.2. Alpha-beta pruning
+*   **Concept:** The standard Minimax algorithm explores every possible move, which is practically impossible for complex games like Chess due to the massive game tree ($O(b^m)$). Alpha-beta pruning is an optimization technique that ignores (prunes) branches that cannot possibly influence the final decision.
+*   **Parameters:**
+    *   **$\alpha$ (Alpha):** The value of the best (highest) choice found so far along the path for MAX. (Initially $-\infty$).
+    *   **$\beta$ (Beta):** The value of the best (lowest) choice found so far along the path for MIN. (Initially $+\infty$).
+*   **Pruning Condition (VVI):** Search can be stopped (pruned) below any node if **$\alpha \ge \beta$**.
+*   **Advantage:** It does not change the final minimax result, but it effectively cuts the time complexity in half (from $O(b^m)$ to roughly $O(b^{m/2})$), allowing the agent to look twice as deep into the future in the same amount of time.
+
+(put a fig here: A Minimax game tree (triangle nodes for MAX, inverted triangle nodes for MIN). Show a branch with an 'X' over it to represent Alpha-Beta Pruning where a sub-tree is ignored because a better/worse alternative already exists.)
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Adversarial Search (Games):** Dui jana ko dushmani hune game (Chess, Tic-Tac-Toe). Euta le jitda arko le harcha (Zero-sum).
+*   **Minimax:** Dui jana player hunxa: MAX (jaslai dherai score chaiyeko cha) ra MIN (jaslai thorai score chaiyeko cha). MAX le decision lida, "MIN le aafno sabai vanda best khelda pani, maile kasari dherai score lyauna sakchu?" vanera sochcha.
+*   **Alpha-Beta Pruning:** Minimax le dherai useless bato (branches) haru pani check garcha jasle time waste hunxa. Alpha-Beta le k garcha vane, yadi euta naramro bato dekhiyo jasle final result lai kei asar gardaina, tyo purai branch lai nai check gardaina (Prune/katdhincha). $\alpha \ge \beta$ vayo vane katne. Yesle game fast chalcha!
+
+---
+
+## 3.5. Constraint Satisfaction Problems (CSPs)
+**Definition:** A CSP is a specific type of problem solving where the goal is to find an assignment of values to variables such that no mathematical or logical constraints are violated. Instead of black-box states, CSP states have a structured representation.
+
+### 3.5.1. Representation of CSPs
+A CSP is mathematically defined by three components:
+1.  **Variables ($X$):** A set of variables $\{X_1, X_2, ..., X_n\}$. (e.g., The regions on a map: $WA, NT, Q, NSW, V, SA, T$).
+2.  **Domains ($D$):** A set of allowable values for each variable $\{D_1, D_2, ..., D_n\}$. (e.g., The colors available to paint the map: $\{Red, Green, Blue\}$).
+3.  **Constraints ($C$):** A set of rules that specifies allowable combinations of values. (e.g., $WA \neq NT$, meaning neighboring regions Western Australia and Northern Territory cannot have the same color).
+
+### 3.5.2. Search Algorithms for CSPs
+Standard search algorithms (like BFS/DFS) are terrible for CSPs because they don't consider constraints early on. Special algorithms are used:
+1.  **Backtracking Search:**
+    *   The primary algorithm for CSPs. It is a form of Depth-First Search.
+    *   It assigns a value to one variable at a time. If it assigns a value that violates a constraint, it immediately stops exploring that path, goes back (backtracks) to the previous variable, and tries a different value.
+2.  **Constraint Propagation:**
+    *   Instead of blindly guessing, the system uses the constraints to logically reduce the number of legal values for a variable.
+    *   *Forward Checking:* Whenever variable $X$ is assigned a value, delete that value from the domains of all neighboring variables of $X$. If any neighbor's domain becomes empty, backtrack immediately.
+
+### 3.5.3. Optimization Technique: Min-Conflicts Heuristic
+*   **Concept:** This is a local search method specifically designed for CSPs. It is incredibly efficient (can solve million-queens problems in seconds).
+*   **Mechanism:** 
+    1. Start with a complete but flawed assignment (every variable has a value, but some constraints are violated).
+    2. Randomly select a conflicted variable.
+    3. Change its value to the one that violates the *minimum number of constraints* with other variables.
+    4. Repeat until all constraints are satisfied.
+
+(put a fig here: A Map Coloring problem graph. Show 3 nodes (A, B, C) connected in a triangle. The domain for all is {Red, Blue}. Constraint is that connected nodes cannot have the same color. Show an assignment that satisfies this constraint if a third color was introduced, or show the impossibility with just 2 colors.)
+
+
+
+# Unit 4: Knowledge Representation and Reasoning
+
+## 4.1. Propositional Logic
+**Definition:** Propositional Logic (PL), also known as Boolean logic, is the simplest form of logic where all statements are made by propositions. A proposition is a declarative sentence that is either strictly **True (T)** or **False (F)**, but not both.
+
+### 4.1.1. Syntax
+The syntax defines the allowable sentences in the logic.
+*   **Atomic Sentences:** The indivisible propositions, represented by symbols like $P, Q, R$. (e.g., $P$ = "It is raining").
+*   **Complex Sentences:** Formed by combining simpler sentences using **Logical Connectives**:
+    *   $\neg$ (NOT / Negation): $\neg P$ (It is not raining)
+    *   $\land$ (AND / Conjunction): $P \land Q$ (It is raining AND it is cold)
+    *   $\lor$ (OR / Disjunction): $P \lor Q$ (It is raining OR it is cold)
+    *   $\implies$ (IMPLIES / Conditional): $P \implies Q$ (If it is raining, THEN it is cold)
+    *   $\iff$ (IFF / Biconditional): $P \iff Q$ (It is raining IF AND ONLY IF it is cold)
+
+### 4.1.2. Semantics
+The semantics defines the "meaning" of the sentences—how to evaluate their truth value with respect to a specific model.
+*   **Truth Tables:** Used to compute the truth value of complex sentences based on the truth values of their atomic parts.
+    *   $P \land Q$ is true ONLY if both $P$ and $Q$ are true.
+    *   $P \lor Q$ is false ONLY if both $P$ and $Q$ are false.
+    *   $P \implies Q$ is false ONLY when $P$ is true and $Q$ is false (e.g., A broken promise).
+
+### 4.1.3. Inference in Propositional Logic
+**Inference** is the process of deriving new sentences from old ones. 
+*   **Entailment ($KB \models \alpha$):** Means that a sentence $\alpha$ follows logically from a Knowledge Base ($KB$). In every model where the $KB$ is true, $\alpha$ is also true.
+*   **Standard Inference Rules:**
+    *   *Modus Ponens:* If $P \implies Q$ is true, and $P$ is true, infer $Q$.
+    *   *Modus Tollens:* If $P \implies Q$ is true, and $\neg Q$ is true, infer $\neg P$.
+    *   *And-Elimination:* If $P \land Q$ is true, infer $P$.
+
+### 4.1.4. Conjunctive Normal Form (CNF)
+**Definition:** For automated theorem proving, sentences must be converted into a standard format called CNF. A sentence is in CNF if it is a **conjunction of clauses**, where each clause is a **disjunction of literals** (essentially an "AND of ORs").
+*   *Format:* $(A \lor B) \land (\neg C \lor D) \land (E)$
+*   **Steps to Convert to CNF (Exam Focus):**
+    1.  Eliminate $\iff$ by replacing $P \iff Q$ with $(P \implies Q) \land (Q \implies P)$.
+    2.  Eliminate $\implies$ by replacing $P \implies Q$ with $\neg P \lor Q$.
+    3.  Move $\neg$ inwards using De Morgan's Laws: $\neg(P \land Q) \equiv \neg P \lor \neg Q$.
+    4.  Distribute $\lor$ over $\land$ to flatten the sentence into clauses.
+
+### 4.1.5. Resolution Theorem Proving
+**Definition:** Resolution is a sound and complete inference algorithm that operates on CNF. It uses **proof by contradiction** (Refutation).
+*   **The Resolution Rule:** If you have $(P \lor Q)$ and $(\neg P \lor R)$, you can resolve them to derive $(Q \lor R)$ by canceling out the complementary literals ($P$ and $\neg P$).
+*   **Steps for Proof:**
+    1.  To prove $\alpha$ from $KB$, assume $\alpha$ is false ($\neg \alpha$).
+    2.  Add $\neg \alpha$ to the $KB$.
+    3.  Convert the entire extended $KB$ into CNF.
+    4.  Apply the resolution rule to pairs of clauses to produce new clauses.
+    5.  If you eventually derive an **empty clause** (a contradiction, like $P$ and $\neg P$), it means your assumption ($\neg \alpha$) was wrong. Therefore, $\alpha$ must be True!
+
+(put a fig here: A resolution proof tree showing clauses at the top combining downward. Two clauses (e.g., P V Q and ~P V R) merge into a new clause (Q V R), eventually leading to an empty box/null clause at the bottom.)
+
+### 4.1.6. Limitations of Propositional Logic
+1.  **Lack of Expressive Power:** It cannot represent properties of objects or relationships between objects easily.
+2.  **No Variables/Quantifiers:** You cannot say "All men are mortal." You would have to write separate propositions for every single man ($Man_1 \implies Mortal_1 \land Man_2 \implies Mortal_2 ...$), which is infinite and impractical.
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Propositional Logic (PL):** Yo sabai vanda basic logic ho. Yesma kura strictly True ki False matra huncha. P ra Q jasta symbol use garincha.
+*   **Syntax & Semantics:** Syntax vaneko AND ($\land$), OR ($\lor$), IMPLIES ($\implies$) use garera sentence lekhne tarika ho. Semantics vaneko Truth Table banayera meaning nikalne kura ho.
+*   **CNF (Conjunctive Normal Form):** Machine lai bujhauna sajilo hune format (AND of ORs). Exam ma 'Convert to CNF' sodhcha. Paila $\implies$ lai hataune ($\neg P \lor Q$ banayera), ani De Morgan's law lagaune.
+*   **Resolution (VVI):** Proof by contradiction ho. Euta kura prove garna paila "Tyo kura false ho" ($\neg \alpha$) vanera assume garne. Ani solve gardai janda last ma contradiction (Empty clause) aayo vane, aafno assumption wrong thiyo ra prove garna khojeko kura right thiyo vanne confirm huncha.
+*   **Limitations:** PL le "Sabai manxe" (All) wa "Kohii manxe" (Some) vanne kura bujhdaina. Yeslai overome garna Predicate logic (FOL) chaincha.
+
+---
+
+## 4.2. Predicate Logic (First-Order Logic - FOL)
+**Definition:** Predicate Logic (FOL) is a much more expressive language than Propositional Logic. It is built around objects, the properties they possess, and the relations that hold among them.
+
+### 4.2.1. Syntax
+FOL introduces several new syntactical elements:
+*   **Constants:** Represent specific objects (e.g., `John`, `Kathmandu`, `5`).
+*   **Variables:** Represent unknown objects (e.g., `x`, `y`).
+*   **Predicates:** Represent properties or relations that return True/False (e.g., `IsKing(John)`, `Brother(John, Richard)`).
+*   **Functions:** Return an object, not a truth value (e.g., `FatherOf(John)` returns a person object).
+*   **Quantifiers (VVI):**
+    *   **Universal Quantifier ($\forall$):** Means "For All". Used with IMPLIES ($\implies$). 
+        *   *Example:* $\forall x \ Man(x) \implies Mortal(x)$ (All men are mortal).
+    *   **Existential Quantifier ($\exists$):** Means "There Exists" or "For Some". Used with AND ($\land$).
+        *   *Example:* $\exists x \ Crown(x) \land OnHead(x, John)$ (There exists a crown that is on John's head).
+
+### 4.2.2. Semantics
+In FOL, a sentence is true with respect to an **Interpretation** in a **Domain**.
+*   The domain is the set of all objects we are talking about.
+*   The interpretation assigns meanings to the constants, predicates, and functions. A sentence like `Brother(Richard, John)` is true if, in our modeled world, the object referred to by 'Richard' is indeed the brother of the object referred to by 'John'.
+
+### 4.2.3. Inference in Predicate Logic
+To use standard propositional inference (like Modus Ponens), FOL sentences with variables must first be converted into specific ground terms.
+*   **Universal Instantiation:** We can infer any specific sentence by substituting a ground term (a constant) for the variable.
+    *   From $\forall x \ King(x) \implies Greedy(x)$, we can infer $King(John) \implies Greedy(John)$.
+*   **Existential Instantiation:** We can replace an existentially quantified variable with a brand new, unique constant (called a Skolem constant).
+    *   From $\exists x \ Crown(x)$, we can infer $Crown(C_1)$ (where $C_1$ is a specific new object we just named).
+
+### 4.2.4. Resolution in Predicate Logic
+Resolution in FOL works identically to Propositional logic (proof by contradiction, CNF conversion), but with one major addition: **Unification**.
+*   **Unification:** The process of finding a substitution ($\theta$) that makes two different logical expressions look identical so they can be resolved.
+    *   *Example:* To resolve `Knows(John, x)` and `Knows(y, Mary)`, we use the substitution $\theta = \{x/Mary, y/John\}$. This unifies both into `Knows(John, Mary)`.
+*   After unification, the complementary literals are canceled out just like in propositional resolution.
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Predicate Logic (FOL):** PL ko weakness hatauna banayeko advance logic. Yesma sentence lai word-word ma break garna milcha.
+*   **Syntax:** Exam ma translate garna sodhcha! 
+    *   Constants (naam jastai Ram, Hari), Variables ($x, y$), ra Predicate (Relation dekhaune, jastai $Brother(x,y)$).
+    *   **$\forall$ (For all):** "Sabai" vanda yo use garne. Yesko sathi sadhai $\implies$ huncha. (Jastai: Sabai kukur bhukchan).
+    *   **$\exists$ (There exists):** "Kehi/Some" vanda yo use garne. Yesko sathi sadhai $\land$ (AND) huncha. (Jastai: Kehi biralo kalo hunchan).
+*   **Inference & Unification:** FOL ma $x$ ra $y$ jasta variable hune vayekole sidhai resolution garna mildaina. Paila dui wota sentence lai eutei banauna (Match garna) parcha. $x$ ko thau ma 'John' halera match garne technique lai **Unification** vaninxa. Unification garepachi matra Resolution garera katna milcha.
+
+---
+
+## 4.3. Reasoning Under Uncertainty
+In the real world, agents rarely have access to complete, deterministic facts. Sensors are noisy, rules have exceptions, and environments are partially observable. AI uses Probability Theory to quantify and reason with this uncertainty.
+
+### 4.3.1. Probabilistic Reasoning
+*   **Concept:** Instead of saying "If A, then B" (Logic), we say "If A, then B occurs with a probability of 80%".
+*   **Prior (Unconditional) Probability:** The probability of an event before any new evidence is observed, $P(A)$.
+*   **Posterior (Conditional) Probability:** The probability of an event *given* that some evidence has been observed, $P(A|B)$.
+*   **Bayes' Theorem (The Core of AI Probability):** It calculates the probability of a cause given an observed effect.
+    *   $P(Cause | Effect) = \frac{P(Effect | Cause) \times P(Cause)}{P(Effect)}$
+
+#### 4.3.1.1. Bayesian Networks (Belief Networks)
+**Definition:** A Bayesian Network is a Directed Acyclic Graph (DAG) used to represent a set of random variables and their conditional dependencies via probability tables.
+*   **Structure:**
+    1.  **Nodes:** Represent random variables (e.g., $Burglary$, $Earthquake$, $Alarm$).
+    2.  **Directed Edges (Links):** Represent direct causal relationships (e.g., $Burglary \rightarrow Alarm$). No loops are allowed.
+    3.  **Conditional Probability Tables (CPTs):** Every node has a table quantifying the effect of its parents on that node: $P(Node | Parents)$.
+*   **Purpose:** It drastically reduces the number of probabilities required to model complex domains by exploiting conditional independence.
+
+(put a fig here: A simple Bayesian Network DAG. Top nodes 'Burglary' and 'Earthquake' both have arrows pointing down to an 'Alarm' node. The 'Alarm' node has arrows pointing down to 'JohnCalls' and 'MaryCalls' nodes. Small grid tables (CPTs) are shown next to each node.)
+
+### 4.3.2. Probabilistic reasoning over time
+Static models (like simple Bayes Nets) do not account for time. In dynamic environments, the state changes sequentially over time (e.g., tracking a moving car, speech recognition). We need **Temporal Models**.
+*   **Markov Assumption:** The current state depends *only* on the immediately previous state, not on the entire history. This makes computation manageable.
+
+#### 4.3.2.1. Hidden Markov Models (HMMs)
+**Definition:** An HMM is a specific temporal probabilistic model where the system being modeled is assumed to be a Markov process with **hidden (unobservable) states**, but it produces **observable outputs (emissions)** at each time step.
+*   **Core Components:**
+    1.  **Hidden States ($X_t$):** The actual true state of the world that we cannot directly see (e.g., "Is it Raining or Sunny today?").
+    2.  **Observations ($E_t$):** The evidence we can actually see/measure (e.g., "Did the boss bring an Umbrella today?").
+    3.  **Transition Model:** The probability of moving from one hidden state to another $P(X_t | X_{t-1})$.
+    4.  **Sensor/Emission Model:** The probability of seeing an observation given a hidden state $P(E_t | X_t)$.
+*   **Applications:** Widely used in Speech Recognition (the hidden states are the actual words, the observations are the sound waves), sequence prediction, and bioinformatics.
+
+(put a fig here: A Hidden Markov Model (HMM) diagram unrolled over time. A top row of hidden state nodes (X_t-1 -> X_t -> X_t+1) connected by horizontal transition arrows. Below each X node, a downward arrow points to an Observation node (E_t-1, E_t, E_t+1) representing the emission model.)
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Reasoning Under Uncertainty:** Real life ma sabai kura 100% fix hudaina, chance ko kura huncha. AI le yeslai Probability bata solve garcha.
+*   **Bayes' Theorem:** Asar (Effect) dekhera tesko Kaaran (Cause) patta lagaune formula. Jastai khoki lagyo vane TV/TB vako chance kati cha?
+*   **Bayesian Networks:** Exam ko lagi VVI! Yo euta Graph ho jaha Node le variable (jastai Chor aayo, Bhukampa gayo) bujhaucha ra Arrow le ek-aapas ko connection bujhaucha. Harek node sanga euta Probability table (CPT) huncha.
+*   **Hidden Markov Models (HMM):** Time anusaar change hune kura ko lagi use huncha. Yesma main state "Hidden" (lukeko) huncha tara tesle bahira dekhaune lakshan (Observation) bata hami guess garchau. Jastai: Baira paani pareko cha ki nai (Hidden) thavayena, tara sathi le chhata liyera aayo (Observation) vane paani pareko cha vanne guess garna sakincha. Voice recognition ma dherai use huncha.
+
+---
+
+## 4.4. Other Approaches to Knowledge Representation
+*(Note: These overlap with Expert Systems in Unit 7, but here they are framed as general KR techniques).*
+
+### 4.4.1. Semantic Nets and Frames
+*   **Semantic Networks:** A graphical approach where knowledge is represented as a network of interconnected nodes and links.
+    *   **Nodes:** Represent concepts, objects, or events.
+    *   **Edges (Links):** Represent relationships, typically `IS-A` (inheritance) and `HAS-A` (properties).
+    *   *Advantage:* Intuitively readable by humans and easily handles property inheritance.
+*   **Frames:** Developed by Marvin Minsky, frames are record-like structures representing stereotypical situations or objects (similar to OOP classes). They consist of **Slots** (attributes like 'Color') and **Facets** (values like 'Red' or default procedures).
+
+### 4.4.2. Rule-based Representation
+*   Knowledge is represented purely as **IF-THEN** conditional rules.
+    *   `IF (Condition/Premise) THEN (Action/Conclusion)`
+*   This forms the basis of the Knowledge Base in most Expert Systems. It is processed using Forward Chaining (data-driven) or Backward Chaining (goal-driven) algorithms.
+
+### 4.4.3. Ontological-Based Representation
+*   **Ontology:** A formal, explicit specification of a shared conceptualization. It defines the common vocabulary, entities, classes, properties, and the precise rules that govern them in a specific domain.
+*   **Usage:** Crucial for allowing different AI agents and systems to communicate and share data meaningfully across the internet (e.g., Semantic Web). Built using formal languages like OWL (Web Ontology Language).
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **Other KR Approaches:** Logic bahek aru tarika le pani knowledge store garna milcha:
+    *   **Semantic Nets:** Graph/Tree banayera, jastai "Bird IS-A Animal".
+    *   **Frames:** OOP ko Class ra Object jastai, box vitra data property ra value halera rakhne.
+    *   **Rule-based:** IF-THEN format ma rule haru banayera rakhne.
+    *   **Ontology:** Euta specific field (jastai Medical) ko sabai common vocabulary ra relation lai formally define garne, jasle garda world vari ko system le eutei data bujhos.
+
+*(Note: This completes the entire syllabus! Units 1 to 7 are now fully covered with theoretical concepts, Neplish summaries, and diagram placeholders. Let me know if you need to compile them or need a specific revision strategy!)*
+
+***
+
+**Nepali Core Concept Summary (Neplish):**
+*   **CSP (Constraint Satisfaction Problem):** Yesma problem solve garna variables, domain ra constraints diyeko hunxa. Jastai map coloring: Variable (Thau ko naam), Domain (Rung haru: Red, Blue), ra Constraint (Aapas ma jodieka thau ma eutai rung launa namilne). Sudoku pani CSP ko best example ho.
+*   **Backtracking Search:** Euta variable ma value halne, ani check garne constraint break vayo ki nai. Vayo vane purai path check nagari sidhai pachadi farkine (backtrack garne) ra arko value halne.
+*   **Constraint Propagation:** Euta ma value halne bittikai, aaspas ko varible ko options (domain) bata tyo value hataidine. Yesle galti huna bata paila nai bachaucha.
+*   **Min-Conflicts:** Sabai ma randomly value vardeune. Tespachi jun variable le dherai rule break gareko cha, teslai samatne ra tesko value yesto rakhne jasle sabai vanda kam rule break garos (Minimum conflicts). Yo ekdum fast tarika ho!
 
 
 # Unit 5: Machine Learning
