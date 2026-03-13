@@ -748,7 +748,7 @@ In the real world, agents rarely have access to complete, deterministic facts. S
 *   **Purpose:** It drastically reduces the number of probabilities required to model complex domains by exploiting conditional independence.
 
 (put a fig here: A simple Bayesian Network DAG. Top nodes 'Burglary' and 'Earthquake' both have arrows pointing down to an 'Alarm' node. The 'Alarm' node has arrows pointing down to 'JohnCalls' and 'MaryCalls' nodes. Small grid tables (CPTs) are shown next to each node.)
-
+![sd](image-11.png)
 ### 4.3.2. Probabilistic reasoning over time
 Static models (like simple Bayes Nets) do not account for time. In dynamic environments, the state changes sequentially over time (e.g., tracking a moving car, speech recognition). We need **Temporal Models**.
 *   **Markov Assumption:** The current state depends *only* on the immediately previous state, not on the entire history. This makes computation manageable.
