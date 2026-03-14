@@ -233,3 +233,55 @@ $$P(D|S) \approx 0.000222 \text{ (or } 0.0222\%)$$
     *   $P(Symptoms | Disease)$ = "probability of symptoms condition to disease" vanna leketko cha, yo $50\%$ wa $1/2$ ho.
     *   Hamilai "Probability of disease condition to symptoms" nikalna vaneko cha, matlab $P(Disease | Symptoms)$.
 *   Aba sidhai formula ma fraction halera solve garne. $0.5$ lai $1/2$ banayera solve garda calculation ekdum fast ra mistake nabhai garna sakincha! Result $1/4500$ aauxa.
+
+
+Here is a detailed check of your handwritten First-Order Logic (FOL) statements. You have a good grasp of the concepts, but there are a few syntax and scoping errors that could cost you marks in an exam. 
+
+Let's review them one by one:
+
+### **General Exam Tip First:**
+You are using a colon (`:`) after your quantifiers (like `∀x :`). While some professors might understand it, **it is non-standard in formal logic**. You should use brackets to define the scope. 
+*   *Don't write:* `∀x : P(x) -> Q(x)`
+*   *Write:* `∀x ( P(x) -> Q(x) )`
+
+---
+
+### **i) All Hindu are either loyal to Krishna or Shiva.**
+*   **Your Answer:** `∀x : Hindu(x) -> loyalto(x, krishna) V loyalto(x, shiva)`
+*   **Review:** **Conceptually Correct, Syntax needs minor fix.**
+    The logic is absolutely right. However, to avoid ambiguity with the OR (`V`) operator, you should wrap the entire "Then" part in brackets, and wrap the whole statement in brackets.
+*   **Corrected Format:** 
+    `∀x ( Hindu(x) -> (loyalto(x, Krishna) ∨ loyalto(x, Shiva)) )`
+
+### **ii) Every gardener like sun.**
+*   **Your Answer:** `∀x : gardener(x) -> like(x, sun)`
+*   **Review:** **Conceptually Correct, Syntax needs minor fix.**
+    Again, the logic is perfect. Just replace the colon with brackets for standard notation.
+*   **Corrected Format:** 
+    `∀x ( gardener(x) -> like(x, Sun) )`
+
+### **iii) There is exactly two read mushroom.** 
+*(Note: Assuming 'red mushroom' based on standard questions)*
+*   **Your Answer:** `∃x ∃y : readmushroom(x) ∧ readmushroom(y) ∧ x ≠ y ∧ ∀z (Read_mushroom(z)) -> (z = x V z = y))`
+*   **Review:** **Concept is 90% there, but MAJOR BRACKET ERROR.**
+    You successfully remembered the logic for "exactly two" (exist x, exist y, they are different, and if any z exists, it must be x or y). **Brilliant!** 
+    *However*, your bracket placement on the `∀z` part is wrong. You closed the bracket right after `Read_mushroom(z)`, which breaks the implication. The Implies (`->`) must be *inside* the `∀z` scope.
+*   *Your mistake:* `... ∀z (Read_mushroom(z)) -> ...` ❌
+*   *Correct scope:* `... ∀z (Read_mushroom(z) -> (z = x ∨ z = y)) ` ✅
+*   **Corrected Format:**
+    `∃x ∃y ( RedMushroom(x) ∧ RedMushroom(y) ∧ (x ≠ y) ∧ ∀z (RedMushroom(z) -> (z = x ∨ z = y)) )`
+
+### **iv) Every parents is older than child.**
+*   **Your Answer:** `∀x : parent(x, y) -> older(x, y)`
+*   **Review:** **INCORRECT (Free Variable Error).**
+    You introduced the variable `y` in `parent(x, y)` and `older(x, y)`, but you completely forgot to declare `y` at the beginning! In FOL, every variable must be bound to a quantifier. Because `y` doesn't have a `∀` or `∃` in front of it, it is a "free variable," making the formula mathematically invalid.
+    The statement means: "For ALL x, and for ALL y, if x is the parent of y, then x is older than y."
+*   **Corrected Format:** 
+    `∀x ∀y ( parent(x, y) -> older(x, y) )`
+
+***
+
+### 💡 **Nepali Core Concept Summary (Exam Tips):**
+1.  **Colon (:) use nagarne!** Quantifier pachi sidhai bracket `(` start garne ra last ma `)` close garne. (e.g., `∀x ( ... )`).
+2.  **Free Variable galti:** Question number 4 ma timile `y` use garyau tara agadi `∀y` lekhnau. Yesto garda exam ma sidhai 0 marks aauxa! Variable use garne bittikai tesko aagadi $\forall$ wa $\exists$ hunei parcha.
+3.  **Exactly Two ko Bracket:** Question 3 ma timile logic ekdum sahi liyeka thiyau, just bracket bigryo. `∀z (Condition -> Conclusion)` format ma hunuparcha. Bracket lekhda dhyaan dine.
