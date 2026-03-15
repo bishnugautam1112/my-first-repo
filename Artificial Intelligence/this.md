@@ -596,7 +596,7 @@ The core mechanism that ensures optimality is that **A* does not terminate when 
 8.  Since $G_1$ is a goal node and it has the lowest $f(n)$ in the queue, the algorithm terminates and returns $G_1$ as the optimal solution.
 
 (put a fig here: A search tree showing Start node S branching to A and B. Path S->A->G1 has edge costs 20 and 30 (Total 50). Path S->B->G2 has edge costs 10 and 70 (Total 80). Node B is expanded first, finding G2, but since f(A) < f(G2), the algorithm switches back to expand A and finds the cheaper G1.)
-
+![alt text](image-15.png)
 ***
 **Nepali Core Concept Summary (Neplish):**
 Exam ma yo kura fix lekhne: A* le goal dekhne bittikai search rokdaina! Yadi graph ma dui wota goal cha (euta sasto $G_1$, arko mahango $G_2$), ra algorithm le galti le mahango goal $G_2$ paila bheti halyo vane pani teslai final mandaina. Tyo $G_2$ lai OPEN list ma rakhcha. Yadi list ma aru kunai sasto bato (node) baki cha vane, A* le tyo $G_2$ lai xodera sasto bato khojdai jancha, ra last ma sasto goal $G_1$ bhetayepachi matra program stop garcha.
