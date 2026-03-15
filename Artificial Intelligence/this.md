@@ -574,3 +574,95 @@ If you master *only* these Tier 1 and Tier 2 questions, you will secure an A gra
 5.  If you have time left, practice the **Perceptron OR gate** table.
 
 *This prioritized list covers literally 80% of any Pokhara University AI exam. Stick to this, and you'll score an A effortlessly.*
+
+
+# Important A* Search Algorithm Questions & Solutions
+
+## Q1. Explain with an example how A* search can find the optimal solution when there is more than one solution in the graph. (Highly Repeated)
+
+**Answer:**
+A* search guarantees finding the optimal (lowest cost) solution among multiple available goals because of its evaluation function: **$f(n) = g(n) + h(n)$**. 
+
+The core mechanism that ensures optimality is that **A* does not terminate when a goal is merely *generated* (discovered). It only terminates when a goal node is *expanded* (popped from the OPEN priority queue).**
+
+**How it works step-by-step:**
+1.  Suppose there are two goal nodes: $G_1$ (Optimal Goal, total cost = 50) and $G_2$ (Sub-optimal Goal, total cost = 80).
+2.  During the search, the algorithm might stumble upon $G_2$ first because the heuristic $h(n)$ was misleadingly low.
+3.  Even though $G_2$ is generated, its total cost $f(G_2) = 80$ is placed in the OPEN queue.
+4.  There is another node, let's call it $A$, which is on the path to $G_1$. Its current $f(A)$ might be $40$. 
+5.  Because $40 < 80$, the A* algorithm will **ignore** $G_2$ for now and expand node $A$ instead.
+6.  It continues expanding nodes along the $G_1$ path until $G_1$ is generated and its final cost $f(G_1) = 50$ is calculated.
+7.  Now the OPEN queue has $G_1 (50)$ and $G_2 (80)$. Since $50 < 80$, $G_1$ is popped out. 
+8.  Since $G_1$ is a goal node and it has the lowest $f(n)$ in the queue, the algorithm terminates and returns $G_1$ as the optimal solution.
+
+(put a fig here: A search tree showing Start node S branching to A and B. Path S->A->G1 has edge costs 20 and 30 (Total 50). Path S->B->G2 has edge costs 10 and 70 (Total 80). Node B is expanded first, finding G2, but since f(A) < f(G2), the algorithm switches back to expand A and finds the cheaper G1.)
+
+***
+**Nepali Core Concept Summary (Neplish):**
+Exam ma yo kura fix lekhne: A* le goal dekhne bittikai search rokdaina! Yadi graph ma dui wota goal cha (euta sasto $G_1$, arko mahango $G_2$), ra algorithm le galti le mahango goal $G_2$ paila bheti halyo vane pani teslai final mandaina. Tyo $G_2$ lai OPEN list ma rakhcha. Yadi list ma aru kunai sasto bato (node) baki cha vane, A* le tyo $G_2$ lai xodera sasto bato khojdai jancha, ra last ma sasto goal $G_1$ bhetayepachi matra program stop garcha.
+***
+
+## Q2. How does the A-star search escape from the infinite loop / resolve the problem of Greedy best-first search? (Highly Repeated)
+
+**Answer:**
+Greedy Best-First Search evaluates nodes using only the heuristic function: **$f(n) = h(n)$**. It only looks at the estimated distance to the goal, completely ignoring how much it has already traveled. This makes it susceptible to **infinite loops**.
+
+**The Problem with Greedy Search:**
+If an agent moves from Node $A$ to Node $B$, but from $B$, Node $A$ suddenly looks closer to the goal heuristically, the agent will move back to $A$. Then from $A$, it moves back to $B$. It loops infinitely because the heuristic values never change.
+
+**How A* Solves This:**
+A* search introduces the actual past cost, $g(n)$, into the equation: **$f(n) = g(n) + h(n)$**.
+1.  $g(n)$ strictly increases with every step taken.
+2.  If the A* algorithm enters a loop ($A \rightarrow B \rightarrow A \rightarrow B$), every time it revisits a node, the $g(n)$ component grows larger and larger.
+3.  Consequently, the total evaluation cost $f(n)$ for the nodes inside the loop keeps increasing.
+4.  Eventually, the $f(n)$ of the looping path will become strictly greater than the $f(n)$ of some other unexplored node sitting in the OPEN queue.
+5.  At that point, A* naturally abandons the infinite loop, shifts its focus, and expands the other unexplored nodes, effectively escaping the trap.
+
+(put a fig here: A graph showing three nodes: S, A, and G. S connects to A, A connects back to S (creating a loop). S also connects to G. Show Greedy search bouncing back and forth between S and A because h(A) is smaller. Then show A* search where g(n) increases on each bounce, causing f(S) to eventually exceed the path to G, breaking the loop.)
+
+***
+**Nepali Core Concept Summary (Neplish):**
+Greedy Search le khali bhabisya ko distance $h(n)$ matra hercha. Tei vayera eutei bato ma fasyo (A bata B, B bata A) vane tesko value kaile change hudaina ra infinite loop ma fascha. Tara A* le paila lagisakeko kharcha $g(n)$ lai pani joddai jancha. Yadi A* eutei loop ma ghumirakhyo vane tesko $g(n)$ badhdai jancha. Kharcha dherai badhepachi, A* le tyo bato lai xoddincha ra OPEN list ma vako arko sasto bato tira lagcha. Yesari A* loop bata easily baira niskincha.
+***
+
+## Q3. What are the conditions for the A* algorithm to be Optimal? Explain Admissibility.
+
+**Answer:**
+For A* search to be perfectly optimal (guaranteed to find the lowest-cost path), its heuristic function $h(n)$ must satisfy a strict condition called **Admissibility**.
+
+**1. Admissible Heuristic:**
+*   An admissible heuristic is one that **never overestimates** the true cost to reach the goal.
+*   Mathematically: **$0 \le h(n) \le h^*(n)$**
+    *   Where $h(n)$ is the estimated cost.
+    *   Where $h^*(n)$ is the actual, true minimum cost from node $n$ to the goal.
+*   *Why it guarantees optimality:* If the heuristic is optimistic (thinks the goal is closer than it actually is), A* will naturally explore all promising paths before settling on a goal. If it overestimated (pessimistic), it might avoid the optimal path thinking it's too expensive, leading to a sub-optimal solution.
+*   *Example:* Straight-line (Euclidean) distance in map routing. A straight line is the shortest possible path between two points. The actual road distance can be longer, but never shorter. Therefore, it never overestimates.
+
+**2. Consistency (Monotonicity):**
+*   Required for A* to be optimal specifically when using a **Graph Search** (where visited nodes are kept in a CLOSED list to avoid redundant checks).
+*   A heuristic is consistent if, for every node $n$ and its successor $n'$, the estimated cost to the goal from $n$ is no greater than the step cost to get to $n'$ plus the estimated cost from $n'$ to the goal.
+*   Mathematically: **$h(n) \le c(n, a, n') + h(n')$** (This is an application of the triangle inequality).
+
+***
+**Nepali Core Concept Summary (Neplish):**
+A* le sadhai sabai vanda best (optimal) answer nikalcha vanne guarantee taba matra huncha jaba tesko Heuristic $h(n)$ **Admissible** huncha. 
+Admissible vaneko **"Kaile pani dherai over-estimate nagarne"**. Jastai, yadi real ma goal pugna 100 rs lagcha vane, hamro guess $h(n)$ le 100 vanda kam (e.g., 80, 90) dekhauna parcha. Yadi guess le 120 lagcha vanera overestimate garyo vane, A* le tyo sasto bato lai mahango sochera ignore garna sakcha ra wrong answer nikalcha. Straight-line distance sadhai admissible huncha.
+***
+
+## Q4. Compare Greedy Best-First Search and A* Search.
+
+**Answer:**
+
+| Feature | Greedy Best-First Search | A* Search |
+| :--- | :--- | :--- |
+| **Evaluation Function** | $f(n) = h(n)$ | $f(n) = g(n) + h(n)$ |
+| **Focus** | Focuses only on the estimated future cost to the goal. | Combines actual past cost with estimated future cost. |
+| **Completeness** | **No.** Can get stuck in infinite loops (in tree search). | **Yes.** Always finds a solution if one exists. |
+| **Optimality** | **No.** Often finds a quick but sub-optimal/longer path. | **Yes.** Guaranteed to find the absolute shortest path (if $h(n)$ is admissible). |
+| **Time/Space Complexity** | $O(b^m)$ in worst case. Can be fast in practice. | $O(b^d)$ (Exponential). Memory usage is its biggest drawback. |
+| **Best Analogy** | A person blindly walking strictly in the direction of the destination, even if there is a wall in front. | A person using a GPS map, considering both the distance walked and the distance remaining. |
+
+***
+**Nepali Core Concept Summary (Neplish):**
+*   **Greedy Search:** Kina kharcha vayo matlab chaina, khali aagadi ko goal kati najik cha matra herne ($f(n) = h(n)$). Yo fast huncha tara best answer nikalna sakdaina ra loop ma fascha.
+*   **A\* Search:** Paila kati kharcha vayo ra aba kati lagcha dubai jodera herne ($f(n) = g(n) + h(n)$). Yo slow ra memory dherai khane huncha, tara yesle sadhai sabai vanda best (optimal) bato nikalcha ra loop ma fasdaina.
