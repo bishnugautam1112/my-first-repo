@@ -319,3 +319,86 @@ To make it easier for your exam preparation, I have categorized them by sub-topi
 
 ***
 *Note: If you meant Chapter 5 of a different subject (like Software Engineering, Embedded Systems, etc. included in the latter half of your PDF), let me know and I will extract those instead!*
+
+
+Here is the complete, categorized list of all the questions asked from **Chapter 1, Chapter 2, and Chapter 3** of the **Artificial Intelligence** syllabus, extracted from the various university and college past papers in your PDF. 
+
+I have grouped them by chapter and sub-topics so you can easily spot the most repeated and important questions for your exam preparation!
+
+---
+
+### **Chapter 1: Introduction to Artificial Intelligence**
+
+**1. Definitions & Components of AI**
+*   What is artificial intelligence? Explain the components of intelligence in detail. *(Pokhara University - School of Engineering)*
+*   Define Artificial Intelligence. What are the components of AI? *(Universal Engineering & Science College)*
+*   What is Artificial Intelligence? Mention the advantages of Artificial Intelligence. *(From your previously shared text snippet)*
+
+**2. Approaches to AI (Turing Test & Rationality)**
+*   Difference between Turing test and Total Turing test. Justify that "System that think rationally" and "System that act rationally" are the part of artificial intelligence. Explain with example. *(Everest Engineering College)*
+*   Justify that “system thinks rationally” and “System acting humanly” are the part of artificial intelligence. Explain with examples. *(Gandaki College of Engineering and Science)*
+*   Write short notes on: Acting Humanly. *(Pokhara University - School of Engineering)*
+*   Write short notes on: John Searle's "Chinese Room" argument. *(Universal Engineering & Science College)*
+
+**3. Impact and Ethics**
+*   What is Artificial Intelligence? Discuss the impact of artificial intelligence in modern society. *(Nepal Engineering College)*
+*   What is Artificial Intelligence? Explain the current trends of AI and its impact on Society. *(Madan Bhandari College of Engineering)*
+
+---
+
+### **Chapter 2: Intelligent Agents**
+
+**1. Agents, Environments, and PEAS**
+*   Differentiate intelligent agents and rational agents. What is PEAS? Discuss PEAS for Vacuum Cleaning Agent. *(Nepal Engineering College)*
+*   What is PEAS? Explain the architecture of goal based agent and utility based agent. *(Universal Engineering & Science College)*
+*   What is rational agent? Give any two examples of PEAS explaining what is PEAS. *(Universal Engineering & Science College)*
+*   Define agents and environment? How is the design of an intelligent agent affected by the type of environment (deterministic vs. stochastic, fully observable vs. partially observable)? *(Everest Engineering College)*
+
+**2. Types of Agents (Reflex, Model, Goal, Utility)**
+*   What is an intelligent agent? Explain the simplex intelligent agent in detail. *(Pokhara University - School of Engineering)*
+*   Define agent function? Differentiate goal-based and utility-based agents with examples. *(Madan Bhandari College of Engineering)*
+*   What is agent function? Explain simplex reflex and model based agents with examples. *(Gandaki College of Engineering and Science)*
+
+---
+
+### **Chapter 3: Problem Solving and Search Algorithms**
+
+**1. Problem Formulation**
+*   What are the components of a state space search problem formulation? Formulate a search problem for 8-Puzzle, discuss production rules, and provide a solution. *(Nepal Engineering College)*
+*   Define state space problem in solving. *(Universal Engineering & Science College)*
+*   In a distinct land, bigamy is common. There are six people who want to cross a river... Formulate the problem. *(Gandaki College of Engineering and Science)*
+
+**2. Uninformed & Informed Search (BFS, DFS, A*)**
+*   What are the problems of depth first search and breadth first search? How are these problems resolved? Explain with a suitable example? *(Madan Bhandari College of Engineering)*
+*   How does the A* search resolve the problem of greedy best first search that may stuck in a loop? Explain with example. *(Pokhara University - School of Engineering)*
+*   Write difference between A* search algorithm and Best First search algorithm. *(Universal Engineering & Science College)*
+*   What are the evaluation strategies of the A* algorithm? Solve the 8-puzzle problem using the A* algorithm. *(Everest Engineering College)*
+*   Explain with an Example how A* search can find the optimal solution when there is more than one solution? *(Madan Bhandari College of Engineering)*
+*   Perform A* and greedy search on the following graph. *(Gandaki College of Engineering and Science)*
+*   Write short notes on: A* Algorithm. *(Nepal Engineering College)*
+
+**3. Local Search & Optimization (Hill Climbing, Simulated Annealing)**
+*   State and discuss Hill Climbing Algorithm. What are the issues associated with the Hill Climbing Problem, demonstrate with the example of block arrangement problem. *(Nepal Engineering College)*
+*   Explain the concept of hill climbing search? Explain the three problems that can occur during hill climbing search? *(Universal Engineering & Science College)*
+*   State Simulated Annealing Algorithm? The following table shows three evaluations... Calculate the probability of the next state being accepted. *(Nepal Engineering College)*
+*   Explain about simulated annealing. *(Universal Engineering & Science College)*
+*   Write short notes on: Simulated Annealing. *(Pokhara University - School of Engineering)*
+*   Write short notes on: Gradient Descent. *(Everest Engineering College)*
+
+**4. Adversarial Search (Game Playing)**
+*   What is an adversarial search? Explain the min-max algorithm with an example. *(Pokhara University - School of Engineering)*
+*   Explain how alpha beta pruning works. *(Universal Engineering & Science College)*
+*   Explain the concept of alpha and beta value in the alpha beta pruning algorithm. How does these values propagate through the search tree? Show with an example. *(Everest Engineering College)*
+*   Discuss MiniMax with example. *(Nepal Engineering College)*
+
+**5. Constraint Satisfaction Problems (CSP)**
+*   Explain the constrain satisfaction problem with the example of map coloring problem. *(Pokhara University - School of Engineering)*
+*   Explain backtracking search in the constrain satisfaction problems. *(Pokhara University - School of Engineering)*
+*   What is Cryptarithmetic Problem? Formulate it as CSP and provide a solution for the following cryptarithmetic problem: SUN + FUN = SWIM. *(Nepal Engineering College)*
+*   Using constraint satisfaction problem, solve the following crypto arithmetic problem: LOGIC + LOGIC = PROLOG. *(Universal Engineering & Science College)*
+*   Define a Constraint Satisfaction Problem (CSP). Solve the following crypto-arithmetic problem using CSP techniques: SEVEN + EIGHT = TWELVE. *(Everest Engineering College)*
+*   What are the constraints Satisfaction Problems? Solve the following Crypt-arithmetic Problem: BASE + BALL = GAMES. *(Madan Bhandari College of Engineering)*
+*   Write short notes on: Constraint satisfaction (crypto-arithmetic) problem. *(Gandaki College of Engineering and Science)*
+
+***
+*Note: Looking at these past papers, **Crypt-arithmetic problems (CSP), PEAS descriptions, A\* Search, and Hill Climbing limitations** are repeatedly asked in almost every exam. You should definitely master these topics!*
