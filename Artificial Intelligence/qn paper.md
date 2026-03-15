@@ -96,7 +96,7 @@ Here is the exact question from the image, followed by a step-by-step solution t
 **What is a state space of a problem? For the given problem represented in a graph, where initial state is "A" and goal state is "C", find all the possible state space.**
 
 *(The question provides a directed graph with nodes A, B, C, D, E, F, G, H. Arrows indicate the allowed direction of movement between nodes).*
-
+![alt text](image-16.png)
 **Graph Connections (Extracted from the image):**
 *   **Initial State:** A
 *   **Goal State:** C
