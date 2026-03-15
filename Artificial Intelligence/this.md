@@ -285,3 +285,37 @@ You are using a colon (`:`) after your quantifiers (like `∀x :`). While some p
 1.  **Colon (:) use nagarne!** Quantifier pachi sidhai bracket `(` start garne ra last ma `)` close garne. (e.g., `∀x ( ... )`).
 2.  **Free Variable galti:** Question number 4 ma timile `y` use garyau tara agadi `∀y` lekhnau. Yesto garda exam ma sidhai 0 marks aauxa! Variable use garne bittikai tesko aagadi $\forall$ wa $\exists$ hunei parcha.
 3.  **Exactly Two ko Bracket:** Question 3 ma timile logic ekdum sahi liyeka thiyau, just bracket bigryo. `∀z (Condition -> Conclusion)` format ma hunuparcha. Bracket lekhda dhyaan dine.
+
+
+Assuming you are referring to **Chapter 5: Machine Learning** from the **Artificial Intelligence** syllabus (based on our previous notes generation), I have scanned all the Artificial Intelligence past exam papers provided in the document and compiled every question asked from this chapter. 
+
+To make it easier for your exam preparation, I have categorized them by sub-topics:
+
+### **1. Basics of Machine Learning & Types**
+*   What is Machine Learning? Discuss the difference between supervised learning, and unsupervised learning (At least 6 points). *(Nepal Engineering College)*
+*   What is learning by analogy? What are types of Machine learning? Explain two major types with differences between them. *(Universal Engineering & Science College)*
+*   What is machine learning? Discuss the difference between regression, classification and clustering in machine learning. *(Madan Bhandari College of Engineering)*
+*   What are the labelled and unlabeled data? Suppose you are provided with unlabeled data to train a machine learning model. Which machine learning model will you apply to train the learning model? Explain in detail with example. *(Everest Engineering College)*
+*   Write short notes on: Learning by analogy. *(Madan Bhandari College of Engineering)*
+
+### **2. Supervised Learning (Linear Regression & K-NN)**
+*   What is linear regression? Explain with a suitable example. *(Pokhara University - School of Engineering)*
+*   Describe Briefly about Nearest Neighbour and Linear regression in Machine learning. *(Universal Engineering & Science College)*
+*   How does k nearest neighbor algorithm works? Explain it with suitable example. *(Gandaki College of Engineering and Science)*
+*   How does support vector machine work? Illustrate with a suitable example? *(Madan Bhandari College of Engineering)*
+*   State and discuss the linear regression algorithm. Find the value of Y when X = 7 for the given table data. *(Nepal Engineering College)*
+
+### **3. Unsupervised Learning (Clustering)**
+*   Explain the k-means clustering algorithm with step-by-step demonstration on a small dataset, showing how the result. *(Madan Bhandari College of Engineering)*
+*   Write down the k-means clustering algorithm. Cluster the given 8 points in 3 clusters A(2,10), B(2,5), C(8,4), D(5,8), E(7,5), F(6,4), G(1,2), H(4,9). *(Gandaki College of Engineering and Science)*
+
+### **4. Artificial Neural Networks (ANN & Perceptrons)**
+*   Define Artificial Neural Network. Explain how an ANN work in detail. *(Pokhara University - School of Engineering)*
+*   What is an Artificial Neural Network? Implement simple logic OR using Perceptron Model. *(Universal Engineering & Science College)*
+*   Discuss the mathematical model of Neuron. State the perceptron training algorithm and demonstrate the same for AND Gate. *(Nepal Engineering College)*
+*   Explain perceptron learning theory to train AND logic. *(Gandaki College of Engineering and Science)*
+*   Define the role of bias in a perceptron. How are weights updated in a single layer perceptron? Explain with example. *(Madan Bhandari College of Engineering)*
+*   Write the Backpropagation algorithm. Demonstrate its use in designing an XOR gate through one iteration. *(Everest Engineering College)*
+
+***
+*Note: If you meant Chapter 5 of a different subject (like Software Engineering, Embedded Systems, etc. included in the latter half of your PDF), let me know and I will extract those instead!*
