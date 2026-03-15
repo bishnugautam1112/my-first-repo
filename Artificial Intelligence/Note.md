@@ -615,7 +615,7 @@ Standard search algorithms (like BFS/DFS) are terrible for CSPs because they don
     4. Repeat until all constraints are satisfied.
 
 (put a fig here: A Map Coloring problem graph. Show 3 nodes (A, B, C) connected in a triangle. The domain for all is {Red, Blue}. Constraint is that connected nodes cannot have the same color. Show an assignment that satisfies this constraint if a third color was introduced, or show the impossibility with just 2 colors.)
-
+![alt text](image-14.png)
 
 
 # Unit 4: Knowledge Representation and Reasoning
