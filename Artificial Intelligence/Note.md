@@ -538,7 +538,7 @@ To rigorously define a problem for a search algorithm, it must have **5 componen
     5.  **Mutation:** Randomly alters small parts of the offspring's state to maintain genetic diversity and prevent premature convergence to a local maximum.
 
 (put a fig here: A block diagram of the Genetic Algorithm cycle. 'Initial Population' -> 'Fitness Evaluation' -> 'Selection' -> 'Crossover' -> 'Mutation' -> 'New Population'. The cycle repeats until a stopping criteria is met.)
-
+![alt text](image-13.png)
 ### 3.3.4. Gradient Descent
 *   **Concept:** A first-order iterative optimization algorithm for finding a local minimum of a differentiable function. It is heavily used in continuous state spaces and Machine Learning (to minimize the loss function of Neural Networks).
 *   **Mechanism:** It takes steps proportional to the negative of the gradient (or approximate gradient) of the function at the current point. If you imagine standing on a mountain in a thick fog, gradient descent involves feeling the slope under your feet and taking a step in the steepest downward direction.
