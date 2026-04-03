@@ -166,8 +166,7 @@ For $x(t) = 3 \cos(600\pi t) + 2 \cos(1800\pi t)$:
 *   Voltage range $V_{pp} = 5 \text{ V} - (-5 \text{ V}) = 10 \text{ V}$
 
 $$\text{Resolution } (\Delta) = \frac{V_{pp}}{L} = \frac{10 \text{ V}}{512} \approx \mathbf{0.0195 \text{ V}} \text{ (or } 19.5 \text{ mV)}$$
-
-![
+![alt text](image-2.png)
     
     Here are the step-by-step solutions for each part of the problem.
 
