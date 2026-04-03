@@ -96,4 +96,73 @@ $$X(z) = \frac{a z \sin(w_c)}{z^2 - 2az \cos(w_c) + a^2}$$
 **$X(z) = \frac{az \sin(w_c)}{z^2 - 2az \cos(w_c) + a^2}$**
 **ROC: $|z| > |a|$**
 
+
 *(Note: Providing the full derivation above along with the explicit ROC is what typically earns the full 8 marks in a university examination).*
+Based on the text in the image, there appears to be a typo where the mathematical equation for the "input signal" has been omitted. The text reads "...representing samples of an input signal The link...", missing the signal itself. 
+
+I will first provide the solution based strictly on the parameters given in the text. Then, I will provide a complete solution by making a likely assumption about the missing signal based on standard variations of this problem and faint handwritten marks visible in the image.
+
+### Part 1: Solution based purely on printed text
+
+**Given Parameters:**
+*   **Bit rate ($R_b$):** $10,000 \text{ bits/sec}$ (Interpreting "10.000" as $10,000$, which is standard in such contexts).
+*   **Quantization levels ($L$):** $512$
+
+From the number of levels, we can determine the number of bits per sample ($n$):
+$L = 2^n \implies 512 = 2^n \implies \mathbf{n = 9 \text{ bits/sample}}$
+
+**i. What is the sampling frequency and folding frequency?**
+*   **Sampling frequency ($f_s$):** The total bit rate is the product of the sampling frequency and the number of bits per sample ($R_b = n \cdot f_s$).
+    $$f_s = \frac{R_b}{n} = \frac{10,000}{9} \approx \mathbf{1111.11 \text{ Hz}}$$
+*   **Folding frequency ($f_{\text{fold}}$):** Also known as the Nyquist frequency of the sampling system, it is exactly half of the sampling frequency.
+    $$f_{\text{fold}} = \frac{f_s}{2} = \frac{1111.11}{2} \approx \mathbf{555.55 \text{ Hz}}$$
+
+**ii & iii. Nyquist rate and frequencies in $x(n)$**
+These cannot be calculated without knowing the specific frequency components of the input signal $x(t)$.
+
+**iv. What is the resolution?**
+*   In terms of bits, the resolution is **$9$ bits**.
+*   In terms of voltage (the step size $\Delta$), it cannot be calculated without knowing the peak-to-peak voltage range of the input signal. The formula is $\Delta = \frac{V_{\text{max}} - V_{\text{min}}}{L}$.
+
+---
+
+### Part 2: Complete solution with a typical assumed signal
+
+Given faint handwritten marks pointing to an insertion, a common standard problem of this exact type uses the signal: **$x(t) = 3 \cos(600\pi t) + 2 \cos(1800\pi t)$**. Let's solve the rest of the problem assuming this is the intended signal.
+
+**Signal Analysis:**
+The signal $x(t) = 3 \cos(2\pi(300)t) + 2 \cos(2\pi(900)t)$ has two frequency components:
+*   $f_1 = 300 \text{ Hz}$
+*   $f_2 = 900 \text{ Hz}$
+The maximum frequency component is $f_{\text{max}} = 900 \text{ Hz}$.
+
+**i. Sampling and folding frequency**
+*(Calculated in Part 1)*
+*   **$f_s = 1111.11 \text{ Hz}$**
+*   **$f_{\text{fold}} = 555.55 \text{ Hz}$**
+
+**ii. What is the Nyquist rate for the signal?**
+The Nyquist rate of a signal is twice its maximum frequency component.
+$$\text{Nyquist rate} = 2 \cdot f_{\text{max}} = 2 \cdot 900 \text{ Hz} = \mathbf{1800 \text{ Hz}}$$
+*(Notice that the actual sampling rate $1111.11 \text{ Hz}$ is less than the Nyquist rate, which means aliasing will occur.)*
+
+**iii. What are the frequencies in resulting discrete time signal x(n)?**
+To find the discrete-time frequencies, we normalize the analog frequencies by dividing by the sampling frequency ($F = \frac{f}{f_s}$).
+*   For the $300 \text{ Hz}$ component:
+    $$F_1 = \frac{300}{10000/9} = \frac{2700}{10000} = \mathbf{0.27 \text{ cycles/sample}}$$
+    Since $0.27 \le 0.5$, this frequency is accurately represented.
+
+*   For the $900 \text{ Hz}$ component:
+    $$F_2 = \frac{900}{10000/9} = \frac{8100}{10000} = 0.81 \text{ cycles/sample}$$
+    Because $0.81 > 0.5$ (the folding frequency), **aliasing occurs**. The aliased frequency appears at $1 - 0.81$:
+    $$F_{\text{alias}} = \mathbf{0.19 \text{ cycles/sample}}$$
+*The frequencies in $x(n)$ are $0.27$ and $0.19$ cycles/sample.*
+
+**iv. What is the resolution?**
+Resolution as a voltage step size ($\Delta$) requires the peak-to-peak voltage ($V_{pp}$).
+For $x(t) = 3 \cos(600\pi t) + 2 \cos(1800\pi t)$:
+*   Maximum voltage $V_{\text{max}} = 3(1) + 2(1) = 5 \text{ V}$
+*   Minimum voltage $V_{\text{min}} = 3(-1) + 2(-1) = -5 \text{ V}$
+*   Voltage range $V_{pp} = 5 \text{ V} - (-5 \text{ V}) = 10 \text{ V}$
+
+$$\text{Resolution } (\Delta) = \frac{V_{pp}}{L} = \frac{10 \text{ V}}{512} \approx \mathbf{0.0195 \text{ V}} \text{ (or } 19.5 \text{ mV)}$$
