@@ -1,91 +1,68 @@
-Based on the image provided, here is the complete, step-by-step solution.
+Based on the image provided, here is the step-by-step solution for the joint probability density function problem.
 
-**Problem Statement Summary:**
-*   An urn contains **7 red** balls and **4 white** balls.
-*   Total number of balls in the urn = $7 + 4 = \mathbf{11}$ balls.
-*   **3 balls** are drawn at random.
-*   We need to find the **probability distribution, mathematical expectation, and variance** for the number of white balls drawn.
-
-Let the random variable $X$ denote the number of white balls drawn.
-Since 3 balls are drawn, the possible number of white balls ($X$) can be $0, 1, 2, \text{ or } 3$.
-
-To find the probabilities, we will use the concept of combinations $\binom{n}{r}$, which represents choosing $r$ items from $n$ items.
-
-*   **Total number of ways to draw 3 balls out of 11:**
-    $$n(S) = \binom{11}{3} = \frac{11 \times 10 \times 9}{3 \times 2 \times 1} = \mathbf{165}$$
+**Given Joint Probability Density Function (pdf):**
+$$f(x,y) = \begin{cases} \frac{1}{8}(6 - x - y), & 0 < x < 2, \text{ and } 2 < y < 4 \\ 0, & \text{Otherwise} \end{cases}$$
 
 ---
 
-### **1. Probability Distribution**
+### **1. Find the marginal probability density function of X and Y**
 
-Let's calculate the probability for each possible value of $X$.
-The formula for hypergeometric probability is: $P(X=x) = \frac{\binom{\text{White}}{x} \times \binom{\text{Red}}{3-x}}{\binom{\text{Total}}{3}}$
+**a) Marginal pdf of X, denoted as $f_X(x)$:**
+To find $f_X(x)$, we integrate the joint pdf with respect to $y$ over its entire range ($2 < y < 4$). We treat $x$ as a constant.
+$$f_X(x) = \int_{2}^{4} f(x,y) \,dy$$
+$$f_X(x) = \int_{2}^{4} \frac{1}{8}(6 - x - y) \,dy$$
+$$f_X(x) = \frac{1}{8} \left[ 6y - xy - \frac{y^2}{2} \right]_{y=2}^{y=4}$$
 
-*   **Case $X = 0$ (Drawing 0 white balls, which means 3 red balls):**
-    Number of ways to choose 0 white from 4 = $\binom{4}{0} = 1$
-    Number of ways to choose 3 red from 7 = $\binom{7}{3} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35$
-    $$P(X=0) = \frac{1 \times 35}{165} = \mathbf{\frac{35}{165}}$$
+Now, substitute the limits (upper limit minus lower limit):
+$$f_X(x) = \frac{1}{8} \left[ \left( 6(4) - x(4) - \frac{4^2}{2} \right) - \left( 6(2) - x(2) - \frac{2^2}{2} \right) \right]$$
+$$f_X(x) = \frac{1}{8} \left[ (24 - 4x - 8) - (12 - 2x - 2) \right]$$
+$$f_X(x) = \frac{1}{8} [ (16 - 4x) - (10 - 2x) ]$$
+$$f_X(x) = \frac{1}{8} [ 16 - 4x - 10 + 2x ]$$
+$$f_X(x) = \frac{1}{8} [ 6 - 2x ] = \frac{2(3 - x)}{8}$$
+**$f_X(x) = \frac{3 - x}{4} \quad \text{for } 0 < x < 2$**
 
-*   **Case $X = 1$ (Drawing 1 white ball, which means 2 red balls):**
-    Number of ways to choose 1 white from 4 = $\binom{4}{1} = 4$
-    Number of ways to choose 2 red from 7 = $\binom{7}{2} = \frac{7 \times 6}{2 \times 1} = 21$
-    $$P(X=1) = \frac{4 \times 21}{165} = \mathbf{\frac{84}{165}}$$
+**b) Marginal pdf of Y, denoted as $f_Y(y)$:**
+To find $f_Y(y)$, we integrate the joint pdf with respect to $x$ over its entire range ($0 < x < 2$). We treat $y$ as a constant.
+$$f_Y(y) = \int_{0}^{2} f(x,y) \,dx$$
+$$f_Y(y) = \int_{0}^{2} \frac{1}{8}(6 - x - y) \,dx$$
+$$f_Y(y) = \frac{1}{8} \left[ 6x - \frac{x^2}{2} - xy \right]_{x=0}^{x=2}$$
 
-*   **Case $X = 2$ (Drawing 2 white balls, which means 1 red ball):**
-    Number of ways to choose 2 white from 4 = $\binom{4}{2} = \frac{4 \times 3}{2 \times 1} = 6$
-    Number of ways to choose 1 red from 7 = $\binom{7}{1} = 7$
-    $$P(X=2) = \frac{6 \times 7}{165} = \mathbf{\frac{42}{165}}$$
-
-*   **Case $X = 3$ (Drawing 3 white balls, which means 0 red balls):**
-    Number of ways to choose 3 white from 4 = $\binom{4}{3} = 4$
-    Number of ways to choose 0 red from 7 = $\binom{7}{0} = 1$
-    $$P(X=3) = \frac{4 \times 1}{165} = \mathbf{\frac{4}{165}}$$
-
-*(Verification check: $\frac{35}{165} + \frac{84}{165} + \frac{42}{165} + \frac{4}{165} = \frac{165}{165} = 1$)*
-
-**Probability Distribution Table:**
-To make calculations easier later, we will use fractions with the common denominator of 165, but we can also show simplified fractions.
-
-| $X$ (No. of white balls) | $0$ | $1$ | $2$ | $3$ |
-| :---: | :---: | :---: | :---: | :---: |
-| **$P(X=x)$** | $\frac{35}{165}$ | $\frac{84}{165}$ | $\frac{42}{165}$ | $\frac{4}{165}$ |
-| *Simplified $P(X)$* | *$\frac{7}{33}$* | *$\frac{28}{55}$* | *$\frac{14}{55}$* | *$\frac{4}{165}$* |
+Substitute the limits:
+$$f_Y(y) = \frac{1}{8} \left[ \left( 6(2) - \frac{2^2}{2} - (2)y \right) - (0 - 0 - 0) \right]$$
+$$f_Y(y) = \frac{1}{8} [ 12 - 2 - 2y ]$$
+$$f_Y(y) = \frac{1}{8} [ 10 - 2y ] = \frac{2(5 - y)}{8}$$
+**$f_Y(y) = \frac{5 - y}{4} \quad \text{for } 2 < y < 4$**
 
 ---
 
-### **2. Mathematical Expectation, $E(X)$**
+### **2. Find conditional probability density of X given Y = y**
 
-The mathematical expectation (or mean) is calculated using the formula:
-$$E(X) = \sum [x \cdot P(x)]$$
+The formula for the conditional pdf of $X$ given $Y=y$ is:
+$$f(x|y) = \frac{f(x,y)}{f_Y(y)}$$
 
-Let's compute using the unsimplified fractions for easier addition:
-$$E(X) = \left(0 \times \frac{35}{165}\right) + \left(1 \times \frac{84}{165}\right) + \left(2 \times \frac{42}{165}\right) + \left(3 \times \frac{4}{165}\right)$$
-$$E(X) = 0 + \frac{84}{165} + \frac{84}{165} + \frac{12}{165}$$
-$$E(X) = \frac{180}{165}$$
+Substitute the joint pdf and the marginal pdf of $Y$ we found in Step 1b:
+$$f(x|y) = \frac{\frac{1}{8}(6 - x - y)}{\frac{5 - y}{4}}$$
 
-Simplify the fraction by dividing numerator and denominator by 15:
-$$E(X) = \mathbf{\frac{12}{11}} \approx \mathbf{1.09}$$
+To simplify, multiply by the reciprocal of the denominator:
+$$f(x|y) = \frac{1}{8}(6 - x - y) \cdot \frac{4}{5 - y}$$
+$$f(x|y) = \frac{4(6 - x - y)}{8(5 - y)}$$
+**$f(x|y) = \frac{6 - x - y}{2(5 - y)} \quad \text{for } 0 < x < 2$**
 
 ---
 
-### **3. Variance, $Var(X)$**
+### **3. Examine that X and Y are independent**
 
-The variance is calculated using the formula:
-$$Var(X) = E(X^2) - [E(X)]^2$$
+Two random variables $X$ and $Y$ are independent if and only if their joint pdf is equal to the product of their marginal pdfs:
+$$f(x,y) \stackrel{?}{=} f_X(x) \cdot f_Y(y)$$
 
-**Step A: Calculate $E(X^2)$**
-$$E(X^2) = \sum [x^2 \cdot P(x)]$$
-$$E(X^2) = \left(0^2 \times \frac{35}{165}\right) + \left(1^2 \times \frac{84}{165}\right) + \left(2^2 \times \frac{42}{165}\right) + \left(3^2 \times \frac{4}{165}\right)$$
-$$E(X^2) = 0 + \left(1 \times \frac{84}{165}\right) + \left(4 \times \frac{42}{165}\right) + \left(9 \times \frac{4}{165}\right)$$
-$$E(X^2) = \frac{84}{165} + \frac{168}{165} + \frac{36}{165}$$
-$$E(X^2) = \frac{288}{165}$$
-Simplify by dividing by 3: $E(X^2) = \frac{96}{55}$
+Let's test this by multiplying the marginals we found in Part 1:
+$$f_X(x) \cdot f_Y(y) = \left( \frac{3 - x}{4} \right) \cdot \left( \frac{5 - y}{4} \right)$$
+$$f_X(x) \cdot f_Y(y) = \frac{(3 - x)(5 - y)}{16}$$
+$$f_X(x) \cdot f_Y(y) = \frac{15 - 3y - 5x + xy}{16}$$
 
-**Step B: Apply Variance Formula**
-$$Var(X) = \frac{96}{55} - \left(\frac{12}{11}\right)^2$$
-$$Var(X) = \frac{96}{55} - \frac{144}{121}$$
+Now, compare this product to the original joint pdf:
+$$\text{Original joint pdf: } f(x,y) = \frac{6 - x - y}{8} = \frac{12 - 2x - 2y}{16}$$
 
-Find a common denominator ($55 \times 11 = 605$):
-$$Var(X) = \left(\frac{96 \times 11}{55 \times 11}\right) - \left(\frac{144 \times 5}{121 \times 5}\right)$$
-$$Var(X) = \frac{1056}{605} - \frac{720}{605}$$
-$$Var(X) = \mathbf{\frac{336}{605}} \approx \mathbf{0.555}$$
+Since $\frac{15 - 3y - 5x + xy}{16} \neq \frac{12 - 2x - 2y}{16}$, we can conclude that $f(x,y) \neq f_X(x) \cdot f_Y(y)$.
+
+**Conclusion: X and Y are NOT independent (they are dependent).**
